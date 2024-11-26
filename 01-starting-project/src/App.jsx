@@ -31,7 +31,7 @@ function App() {
           <h2>Core Concepts</h2>
           <ul>
             {CORE_CONCEPTS.map((conceptItem, i) => (
-              <CoreConcept  key={i} {...conceptItem} />
+              <CoreConcept key={i} {...conceptItem} />
             ))}
             {/* <CoreConcept
               title={CORE_CONCEPTS[0].title}
@@ -74,7 +74,7 @@ function App() {
               isSelected={selectedTopics === "components"}
               onSelect={() => handleSelect("components")}
               label="Components Using Label Props."
-            /> 
+            />
           </menu>
           {/* {!selectedTopics ? (
             <p>Please Select A Topic.</p>
