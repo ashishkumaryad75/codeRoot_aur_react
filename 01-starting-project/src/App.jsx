@@ -43,19 +43,32 @@ function App() {
         <section id="examples">
           <h2>Examples</h2>
           <menu>
-            <TabButton onSelect={() => handleSelect("components")}>
+            <TabButton
+              isSelected={selectedTopics === "components"}
+              onSelect={() => handleSelect("components")}
+            >
               Components Using Children Props.
             </TabButton>
-            <TabButton onSelect={() => handleSelect("jsx")}>
+            <TabButton
+              isSelected={selectedTopics === "jsx"}
+              onSelect={() => handleSelect("jsx")}
+            >
               JSX Using Children Props.
             </TabButton>
-            <TabButton onSelect={() => handleSelect("props")}>
-              State Using Children Props.
-            </TabButton>
-            <TabButton onSelect={() => handleSelect("state")}>
+            <TabButton
+              isSelected={selectedTopics === "props"}
+              onSelect={() => handleSelect("props")}
+            >
               Props Using Children Props.
             </TabButton>
             <TabButton
+              isSelected={selectedTopics === "state"}
+              onSelect={() => handleSelect("state")}
+            >
+              State Using Children Props.
+            </TabButton>
+            <TabButton
+              isSelected={selectedTopics === "components"}
               onSelect={() => handleSelect("components")}
               label="Components Using Label Props."
             />
