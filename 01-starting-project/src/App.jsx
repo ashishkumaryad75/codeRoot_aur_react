@@ -5,11 +5,24 @@ import TabButton from "./components/TabButton";
 import { useState } from "react";
 
 function App() {
-  const [tabContent, setTabContent] = useState("Please Click A Button...");// hooks are called inside the component and it should be the top of all the functions and data in component.
+  const [selectedTopics, setSelectedTopics] = useState(); // hooks are called inside the component and it should be the top of all the functions and data in component.
   function handleSelect(selectedButton) {
-    console.log(selectedButton, 'Clicked...');
-    setTabContent(selectedButton);
+    console.log(selectedButton, "Clicked...");
+    setSelectedTopics(selectedButton);
   }
+  let selectedTab = <p>Please Select A Topic.</p>;
+  if (selectedTopics) {
+    selectedTab = (
+      <div id="tab-content">
+        <h3>{EXAMPLES[selectedTopics].title}</h3>
+        <p>{EXAMPLES[selectedTopics].description}</p>
+        <pre>
+          <code>{EXAMPLES[selectedTopics].code}</code>
+        </pre>
+      </div>
+    );
+  }
+
   return (
     <div>
       <Header />
@@ -30,13 +43,45 @@ function App() {
         <section id="examples">
           <h2>Examples</h2>
           <menu>
-            <TabButton onSelect={()=>handleSelect('Components')}>Components Using Children Props.</TabButton>
-            <TabButton onSelect={()=>handleSelect('JSX')}>JSX Using Children Props.</TabButton>
-            <TabButton onSelect={()=>handleSelect('State')}>State Using Children Props.</TabButton>
-            <TabButton onSelect={()=>handleSelect('Props')}>Props Using Children Props.</TabButton>
-            <TabButton onSelect={()=>handleSelect('Labeled Components')} label="Components Using Label Props."/>
+            <TabButton onSelect={() => handleSelect("components")}>
+              Components Using Children Props.
+            </TabButton>
+            <TabButton onSelect={() => handleSelect("jsx")}>
+              JSX Using Children Props.
+            </TabButton>
+            <TabButton onSelect={() => handleSelect("props")}>
+              State Using Children Props.
+            </TabButton>
+            <TabButton onSelect={() => handleSelect("state")}>
+              Props Using Children Props.
+            </TabButton>
+            <TabButton
+              onSelect={() => handleSelect("components")}
+              label="Components Using Label Props."
+            />
           </menu>
-          {tabContent}
+          {/* {!selectedTopics ? (
+            <p>Please Select A Topic.</p>
+          ) : (
+            <div id="tab-content">
+              <h3>{EXAMPLES[selectedTopics].title}</h3>
+              <p>{EXAMPLES[selectedTopics].description}</p>
+              <pre>
+                <code>{EXAMPLES[selectedTopics].code}</code>
+              </pre>
+            </div>
+          )} */}
+          {/* {!selectedTopics && <p>Please Select A Topic.</p>}{" "}
+          {selectedTopics && (
+            <div id="tab-content">
+              <h3>{EXAMPLES[selectedTopics].title}</h3>
+              <p>{EXAMPLES[selectedTopics].description}</p>
+              <pre>
+                <code>{EXAMPLES[selectedTopics].code}</code>
+              </pre>
+            </div>
+          )} */}
+          {selectedTab}
         </section>
         <h2>Time to get started!</h2>
       </main>
