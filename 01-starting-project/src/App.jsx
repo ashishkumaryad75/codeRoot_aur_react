@@ -4,6 +4,9 @@ import Header from "./components/Header/Header";
 import TabButton from "./components/TabButton";
 
 function App() {
+  function handleSelect(selectedButton) {
+    console.log(selectedButton, 'Clicked...');
+  }
   return (
     <div>
       <Header />
@@ -24,12 +27,13 @@ function App() {
         <section id="examples">
           <h2>Examples</h2>
           <menu>
-            <TabButton>Button For Components Using Children Props.</TabButton>
-            <TabButton>Button For JSX Using Children Props.</TabButton>
-            <TabButton>Button For State Using Children Props.</TabButton>
-            <TabButton>Button For Props Using Children Props.</TabButton>
-            <TabButton label="Components Using Label Props."/>
+            <TabButton onSelect={()=>handleSelect('Components')}>Components Using Children Props.</TabButton>
+            <TabButton onSelect={()=>handleSelect('JSX')}>JSX Using Children Props.</TabButton>
+            <TabButton onSelect={()=>handleSelect('State')}>State Using Children Props.</TabButton>
+            <TabButton onSelect={()=>handleSelect('Props')}>Props Using Children Props.</TabButton>
+            <TabButton onSelect={()=>handleSelect('Labeled Components')} label="Components Using Label Props."/>
           </menu>
+          Dynamic Data..
         </section>
         <h2>Time to get started!</h2>
       </main>

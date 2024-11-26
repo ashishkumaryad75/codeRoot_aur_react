@@ -1,10 +1,13 @@
 export default function TabButton(props) {
-  return (<>
-    <li>
-      <button>{props.children}</button>
-    </li><li>
-      <button>{props.label}</button>
-    </li>
-  </>
+  
+  return (
+    <>
+      <li>
+        <button onClick={props.onSelect}>{props.children}</button>
+      </li>
+      <li>
+        <button onClick={props.onSelect}>{props.label}</button>
+      </li>
+    </>
   );
 }
