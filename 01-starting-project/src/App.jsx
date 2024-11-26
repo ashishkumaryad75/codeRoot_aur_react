@@ -5,7 +5,7 @@ import TabButton from "./components/TabButton";
 import { useState } from "react";
 
 function App() {
-  const [tabContent, setTabContent] = useState("Please Click A Button...");
+  const [tabContent, setTabContent] = useState("Please Click A Button...");// hooks are called inside the component and it should be the top of all the functions and data in component.
   function handleSelect(selectedButton) {
     console.log(selectedButton, 'Clicked...');
     setTabContent(selectedButton);
