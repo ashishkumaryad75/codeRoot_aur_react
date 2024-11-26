@@ -2,10 +2,13 @@ import { CORE_CONCEPTS, EXAMPLES } from "./data";
 import CoreConcept from "./components/CoreConcept";
 import Header from "./components/Header/Header";
 import TabButton from "./components/TabButton";
+import { useState } from "react";
 
 function App() {
+  const [tabContent, setTabContent] = useState("Please Click A Button...");
   function handleSelect(selectedButton) {
     console.log(selectedButton, 'Clicked...');
+    setTabContent(selectedButton);
   }
   return (
     <div>
@@ -33,7 +36,7 @@ function App() {
             <TabButton onSelect={()=>handleSelect('Props')}>Props Using Children Props.</TabButton>
             <TabButton onSelect={()=>handleSelect('Labeled Components')} label="Components Using Label Props."/>
           </menu>
-          Dynamic Data..
+          {tabContent}
         </section>
         <h2>Time to get started!</h2>
       </main>
