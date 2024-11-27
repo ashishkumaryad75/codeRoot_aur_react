@@ -30,7 +30,7 @@ function Examples() {
         {/* <h2>Examples</h2> */}
         <Tabs
         //   buttonsContainer="menu"
-          ButtonsContainer="menu"
+        //   ButtonsContainer="menu"
           buttons={
             <>
               {" "}
