@@ -1,11 +1,11 @@
 import React from "react";
 
-function Sections({ title, children,id }) {
+function Sections({ title, children,...props }) {
   return (
-    <secion id={id}>
+    <section {...props}>
       <h2>{title}</h2>
       {children}
-    </secion>
+    </section>
   );
 }
 
