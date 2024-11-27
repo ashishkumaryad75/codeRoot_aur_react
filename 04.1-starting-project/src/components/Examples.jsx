@@ -29,6 +29,8 @@ function Examples() {
       <Sections id="examples" title="Examples">
         {/* <h2>Examples</h2> */}
         <Tabs
+        //   buttonsContainer="menu"
+          ButtonsContainer="menu"
           buttons={
             <>
               {" "}
