@@ -1,3 +1,10 @@
+import React from "react";
+
+// const Winning_combinations = () => {
+//   return <div></div>;
+// };
+
+// export default Winning - combinations;
 export const WINNING_COMBINATIONS = [
   [
     { row: 0, column: 0 },
