@@ -1,7 +1,13 @@
 import React from "react";
 
-function Results() {
-  return <div>Results</div>;
+function Results({input}) {
+    console.log(input);
+
+  return (
+    <>
+      <h2>Results</h2>
+    </>
+  );
 }
 
 export default Results;
