@@ -7,10 +7,10 @@ export default function Header() {
       <img src={logo} alt="A canvas" />
       <h1>ReactArt</h1>
       <p
-        style={{
-          color: "white",
-          fontSize: "25px",
-        }}
+        // style={{
+        //   color: "white",
+        //   fontSize: "25px",
+        // }}
       >
         A community of artists and art-lovers.
       </p>
