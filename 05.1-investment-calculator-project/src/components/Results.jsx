@@ -7,7 +7,7 @@ function Results({ input }) {
     resultsData[0].valueEndOfYear -
     resultsData[0].interest -
     resultsData[0].annualInvestment;
-  console.log(resultsData);
+  //   console.log(resultsData);
 
   return (
     <>
@@ -25,7 +25,7 @@ function Results({ input }) {
           {resultsData.map((yearData) => {
             const totalInterest =
               yearData.valueEndOfYear -
-              (yearData.annualInvestment * yearData.year) -
+              yearData.annualInvestment * yearData.year -
               initialInvestment;
             const totalAmountInvested = yearData.valueEndOfYear - totalInterest;
             return (
