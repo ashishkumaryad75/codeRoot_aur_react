@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 function UserInput({ onChange, userInput }) {
   return (
@@ -6,7 +6,7 @@ function UserInput({ onChange, userInput }) {
       <section id="user-input">
         <div className="input-group">
           <p>
-            <label htmlFor=""></label>
+            <label htmlFor="initialInvestment">Initial Investment</label>
             <input
               type="number"
               required
@@ -17,7 +17,7 @@ function UserInput({ onChange, userInput }) {
             />
           </p>
           <p>
-            <label htmlFor=""></label>
+            <label htmlFor="annualInvestment">Annual Investment</label>
             <input
               type="number"
               required
@@ -30,7 +30,7 @@ function UserInput({ onChange, userInput }) {
         </div>
         <div className="input-group">
           <p>
-            <label htmlFor=""></label>
+            <label htmlFor="expectedReturn">Expected Return</label>
             <input
               type="number"
               required
@@ -41,7 +41,7 @@ function UserInput({ onChange, userInput }) {
             />
           </p>
           <p>
-            <label htmlFor=""></label>
+            <label htmlFor="duration">Duration</label>
             <input
               type="number"
               required
