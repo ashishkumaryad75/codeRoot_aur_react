@@ -1,20 +1,21 @@
 import { useState, useRef } from "react";
 
 export default function Player() {
-  const inputPlayerName = useRef("");
+  const inputPlayerName = useRef();
 
   const [playerName, setPlayerName] = useState("");
   // const [submitted, setsubmitted] = useState(false);
 
-  function handleChange(event) {
-    // setsubmitted(false);
-    // setPlayerName(event.target.value);
-  }
+  // function handleChange(event) {
+  // setsubmitted(false);
+  // setPlayerName(event.target.value);
+  // }
 
   function handleClick() {
     // setsubmitted(true);
     setPlayerName(inputPlayerName.current.value);
     console.log(inputPlayerName.current.value);
+    inputPlayerName.current.value = "";
   }
 
   return (
