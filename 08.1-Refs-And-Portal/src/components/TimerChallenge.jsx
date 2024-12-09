@@ -6,6 +6,7 @@ import ResultModal from "./ResultModal";
 
 function TimerChallenge({ title, targetTime }) {
   const timer = useRef();
+  const dialog = useRef();
 
   const [timerStarted, setTimerStarted] = useState(false);
   const [timerExpired, setTimerExpired] = useState(false);
@@ -13,6 +14,11 @@ function TimerChallenge({ title, targetTime }) {
   function handleStart() {
     timer.current = setTimeout(() => {
       setTimerExpired(true);
+      if (dialog.current) {
+        dialog.current.open();  // Call the open method on ResultModal via ref
+      } else {
+        console.log("Modal ref is undefined when trying to open.");
+      }
     }, targetTime * 1000);
 
     setTimerStarted(true);
@@ -24,7 +30,9 @@ function TimerChallenge({ title, targetTime }) {
   }
   return (
     <>
-      {timerExpired && <ResultModal result="lost" targetTime={targetTime} />}
+      {timerExpired && (
+        <ResultModal result="lost" ref={dialog} targetTime={targetTime} />
+      )}
       <section className="challenge">
         <h2>{title}</h2>
         {/* {timerExpired && <p>You Lost!</p>} */}
