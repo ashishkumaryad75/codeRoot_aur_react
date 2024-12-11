@@ -3,7 +3,7 @@ import Sidebar from "./assets/components/Sidebar";
 function App() {
   return (
     <>
-      <main>
+      <main className="h-screen my-8 ">
         <Sidebar />
       </main>
     </>
