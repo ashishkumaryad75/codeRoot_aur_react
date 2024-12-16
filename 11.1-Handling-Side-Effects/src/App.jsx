@@ -30,12 +30,12 @@ function App() {
   }, []);
 
   function handleStartRemovePlace(id) {
-    // setModalIsOpen(true);
+    setModalIsOpen(true);
     selectedPlace.current = id;
   }
 
   function handleStopRemovePlace() {
-    // setModalIsOpen(false);
+    setModalIsOpen(false);
   }
 
   function handleSelectPlace(id) {
