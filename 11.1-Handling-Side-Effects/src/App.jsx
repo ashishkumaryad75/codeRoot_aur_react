@@ -7,24 +7,17 @@ import DeleteConfirmation from "./components/DeleteConfirmation.jsx";
 import logoImg from "./assets/logo.png";
 import { sortPlacesByDistance } from "./loc.js";
 
-const storedIds = JSON.parse(localStorage.getItem("selectedPlaces")) || [];
-  const storedPlaces = storedIds.map((id) =>
-    AVAILABLE_PLACES.find((place) => place.id === id)
-  );
+const storedId = JSON.parse(localStorage.getItem("selectedPlaces")) || [];
+const storedPlaces = storedId.map((id) =>
+  AVAILABLE_PLACES.find((place) => place.id === id)
+);
 
 function App() {
   const modal = useRef();
   const selectedPlace = useRef();
   const [availablePlaces, setAvailablePlaces] = useState([]);
-  const [pickedPlaces, setPickedPlaces] = useState([storedPlaces]);
+  const [pickedPlaces, setPickedPlaces] = useState(storedPlaces);
 
-  // useEffect(() => {
-  //   const storedIds = JSON.parse(localStorage.getItem("selectedPlaces")) || [];
-  //   const storedPlaces = storedIds.map((id) =>
-  //     AVAILABLE_PLACES.find((place) => place.id === id)
-  //   );
-  //   setPickedPlaces(storedPlaces);
-  // }, []);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -55,9 +48,9 @@ function App() {
       return [place, ...prevPickedPlaces];
     });
 
-    const storedIds = JSON.parse(localStorage.getItem("selectedPlaces")) || [];
-    if (storedIds.indexOf(id) === -1) {
-      localStorage.setItem("selectedPlaces", JSON.stringify([id, ...storedIds]));
+    const storedId = JSON.parse(localStorage.getItem("selectedPlaces")) || [];
+    if (storedId.indexOf(id) === -1) {
+      localStorage.setItem("selectedPlaces", JSON.stringify([id, ...storedId]));
     }
   }
 
@@ -67,10 +60,10 @@ function App() {
     );
     modal.current.close();
 
-    const storedIds = JSON.parse(localStorage.getItem("selectedPlaces")) || [];
+    const storedId = JSON.parse(localStorage.getItem("selectedPlaces")) || [];
     localStorage.setItem(
       "selectedPlaces",
-      JSON.stringify(storedIds.filter((id) => id !== selectedPlace.current))
+      JSON.stringify(storedId.filter((id) => id !== selectedPlace.current))
     );
   }
 
