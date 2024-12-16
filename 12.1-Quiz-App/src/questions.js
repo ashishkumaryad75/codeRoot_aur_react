@@ -1,4 +1,4 @@
-export default [
+  export default [
   {
     id: 'q1',
     text: 'Which of the following definitions best describes React.js?',
