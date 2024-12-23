@@ -18,6 +18,17 @@ class Users extends Component {
     };
   }
 
+  componentDidUpdate() {
+    // try {
+    //   //someCodeMightFail();
+    // } catch (err) {
+    //   //handle Error..
+    // }
+    if (this.props.users.length === 0) {
+      throw new Error("No Users Provided!");
+    }
+  }
+
   toggleUsersHandler() {
     console.log("button Clicked");
 
