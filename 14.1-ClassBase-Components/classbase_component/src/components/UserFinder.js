@@ -1,4 +1,4 @@
-import { Fragment, useState, useEffect } from 'react';
+import React,{ Fragment, useState, useEffect } from 'react';
 
 import Users from './Users';
 import classes from './UserFinder.module.css';
