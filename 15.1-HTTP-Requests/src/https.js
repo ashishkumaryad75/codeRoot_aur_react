@@ -28,3 +28,4 @@ export async function updateUserPlaces(places) {
 
   return responseData.messages;
 }
+  
