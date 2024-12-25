@@ -12,7 +12,7 @@ function App() {
   const selectedPlace = useRef();
 
   const [userPlaces, setUserPlaces] = useState([]);
-  const [error, setError] = useState([]);
+  const [errorUpdatingPlaces, setErrorUpdatingPlaces] = useState();
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -39,7 +39,8 @@ function App() {
     try {
       await updateUserPlaces([selectedPlace, ...userPlaces]);
     } catch (error) {
-      setError({
+      setUserPlaces(userPlaces);
+      setErrorUpdatingPlaces({
         message:
           error.message ||
           "Could not upload the data, please try again later..",
@@ -55,8 +56,26 @@ function App() {
     setModalIsOpen(false);
   }, []);
 
+  if (errorUpdatingPlaces) {
+    // error msg
+  }
+
+  function handleError() {
+    setErrorUpdatingPlaces(null);
+  }
+
   return (
     <>
+      <Modal open={errorUpdatingPlaces} onClose={handleError}>
+        {errorUpdatingPlaces && (
+          <Error
+            title={"An Error Occured!!!"}
+            message={errorUpdatingPlaces.message}
+            onConfirm={handleError}
+          />
+        )}
+      </Modal>
+
       <Modal open={modalIsOpen} onClose={handleStopRemovePlace}>
         <DeleteConfirmation
           onCancel={handleStopRemovePlace}
