@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function Login() {
+export default function StateLogin() {
   const [enteredValues, setEenteredValues] = useState({
     email: "",
     password: "",
@@ -18,10 +18,13 @@ export default function Login() {
       email: "",
       password: "",
     }); // resetting the form data
-    
+
     // console.log("entered Email : ", enteredEmail);
     // console.log("entered Password : ", enteredPassword);
   }
+
+  const emailIsInvalid =
+    enteredValues.email !== "" && !enteredValues.email.includes("@");
 
   // function handleEmailChange(event) {
   //   setEnteredEmail(event.target.value);
@@ -53,6 +56,9 @@ export default function Login() {
             onChange={(event) => handleInputChange("email", event.target.value)}
             value={enteredValues.email}
           />
+          <div className="control-error">
+            {emailIsInvalid && <p>Please Enter a Valid Email Address.</p>}
+          </div>
         </div>
 
         <div className="control no-margin">
