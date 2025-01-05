@@ -67,7 +67,7 @@ export default function StateLogin() {
             id="email"
             type="email"
             name="email"
-            onBlur={(event) => handleInputBlur("email")}
+            onBlur={() => handleInputBlur("email")}
             // onChange={handleEmailChange}
             onChange={(event) => handleInputChange("email", event.target.value)}
             value={enteredValues.email}
