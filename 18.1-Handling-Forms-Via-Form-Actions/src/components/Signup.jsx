@@ -7,13 +7,13 @@ import {
 import { useActionState } from "react";
 
 function signupActionFn(prevFormState, formData) {
-  const email = formData.get("email");
-  const password = formData.get("password");
-  const confirmPassword = formData.get("confirm-password");
-  const firstName = formData.get("first-name");
-  const lastName = formData.get("last-name");
-  const role = formData.get("role");
-  const terms = formData.get("terms");
+  const email = formData.get("email") || "";
+  const password = formData.get("password") || "";
+  const confirmPassword = formData.get("confirm-password") || "";
+  const firstName = formData.get("first-name") || "";
+  const lastName = formData.get("last-name") || "";
+  const role = formData.get("role") || "";
+  const terms = formData.get("terms") || "";
   const acquisitionChannel = formData.getAll("acquisition") || [];
 
   let errors = [];
@@ -71,11 +71,10 @@ function signupActionFn(prevFormState, formData) {
 export default function Signup() {
   // Handle form submission
   const signupAction = (event) => {
-    // event.preventDefault()
+    event.preventDefault();
     const formData = new FormData(event.target);
     formAction(formData);
     console.log("Action");
-    
   };
 
   const [formState, formAction] = useActionState(signupActionFn, {
@@ -84,8 +83,8 @@ export default function Signup() {
   });
 
   return (
-    // <form onSubmit={handleSubmit}>
-    <form action={signupAction}>
+    // <form action={handleSubmit}>
+    <form onSubmit={signupAction}>
       <h2>Welcome on board!</h2>
       <p>We just need a little bit of data from you to get you started 🚀</p>
 
