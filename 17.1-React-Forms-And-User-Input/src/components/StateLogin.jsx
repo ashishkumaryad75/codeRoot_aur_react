@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import Input from "./Input";
+import useInput from "../hooks/useInput.js";
 import {
   isEmail,
   isNotEmpty,
@@ -8,64 +9,28 @@ import {
 } from "../util/validation.js";
 
 export default function StateLogin() {
-  const [enteredValues, setEenteredValues] = useState({
-    email: "",
-    password: "",
-  });
-  // const [enteredEmail, setEnteredEmail] = useState("");
-  // const [enteredPassword, setEnteredPassword] = useState("");
-  const [didEdit, setDidEdit] = useState({
-    email: false,
-    password: false,
-  });
+  const {
+    value: emailValue,
+    handleInputChange: handleEmailChange,
+    handleInputBlur: handleEmailBlur,
+    hasError: emailHasError,
+  } = useInput("", (value) => isEmail(value) && isNotEmpty(value));
+
+  const {
+    value: passwordValue,
+    handleInputChange: handlePasswordChange,
+    handleInputBlur: handlePasswordBlur,
+    hasError: passwordHasError,
+  } = useInput("", (value) => hasMinLength(value, 6));
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log("Submitted!!");
-    console.log("entered Email Value : ", enteredValues.email);
-    console.log("entered Password Value : ", enteredValues.password);
 
-    setEenteredValues({
-      email: "",
-      password: "",
-    }); // resetting the form data
+    if (emailHasError || passwordHasError) {
+      return;
+    }
 
-    // console.log("entered Email : ", enteredEmail);
-    // console.log("entered Password : ", enteredPassword);
-  }
-
-  const emailIsInvalid =
-    didEdit.email &&
-    !isEmail(enteredValues.email) &&
-    !isNotEmpty(enteredValues.email);
-  const passwordIsInvalid =
-    didEdit.password && !hasMinLength(enteredValues.password, 6);
-
-  // function handleEmailChange(event) {
-  //   setEnteredEmail(event.target.value);
-  // }
-
-  // function handlePasswordChange(event) {
-  //   setEnteredPassword(event.target.value);
-  // }
-
-  function handleInputChange(identifier, value) {
-    setEenteredValues((pervValues) => ({
-      ...pervValues,
-      [identifier]: value,
-    }));
-
-    setDidEdit((prevEdit) => ({
-      ...prevEdit,
-      [identifier]: false,
-    }));
-  }
-
-  function handleInputBlur(identifier) {
-    setDidEdit((prevEdit) => ({
-      ...prevEdit,
-      [identifier]: true,
-    }));
+    console.log("Submitted!!: ", emailValue, passwordValue);
   }
 
   return (
@@ -78,10 +43,10 @@ export default function StateLogin() {
           id="email"
           type="email"
           name="email"
-          onBlur={() => handleInputBlur("email")}
-          onChange={(event) => handleInputChange("email", event.target.value)}
-          value={enteredValues.email}
-          error={emailIsInvalid && "Please Enter a Valid Email."}
+          onBlur={handleEmailBlur}
+          onChange={handleEmailChange}
+          value={emailValue}
+          error={emailHasError && "Please Enter a Valid Email."}
         />
 
         <Input
@@ -89,12 +54,10 @@ export default function StateLogin() {
           id="password"
           type="password"
           name="password"
-          onBlur={() => handleInputBlur("password")}
-          onChange={(event) =>
-            handleInputChange("password", event.target.value)
-          }
-          value={enteredValues.password}
-          error={passwordIsInvalid && "Please enter a valid password."}
+          onBlur={handlePasswordBlur}
+          onChange={handlePasswordChange}
+          value={passwordValue}
+          error={passwordHasError && "Please enter a valid password."}
         />
       </div>
 
