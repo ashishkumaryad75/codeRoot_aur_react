@@ -33,7 +33,7 @@ export function NewOpinion() {
         },
       };
     }
-
+    
     console.log("Opinion submitted successfully!");
 
     await addOpinion({
