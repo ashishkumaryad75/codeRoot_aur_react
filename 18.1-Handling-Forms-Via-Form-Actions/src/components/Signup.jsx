@@ -4,9 +4,10 @@ import {
   hasMinLength,
   isEqualToOtherValue,
 } from "../util/validation.js";
+import { useActionState } from "react";
 
 export default function Signup() {
-  function signupAction(formData) {
+  function signupAction(prevFormState, formData) {
     // event.preventDefault();
     const email = formData.get("email");
     const password = formData.get("password");
@@ -17,40 +18,50 @@ export default function Signup() {
     const terms = formData.get("terms");
     const acquisitionChannel = formData.getAll("acquisition");
 
-    let error = [];
+    let errors = [];
 
     if (!isEmail(email)) {
-      error.push("Invalid email Address.");
+      errors.push("Invalid email Address.");
     }
 
     if (!isNotEmpty(password) || !hasMinLength(password, 6)) {
-      error.push(
+      errors.push(
         "You must have provide a password with at least Six Charecters."
       );
     }
 
     if (!isEqualToOtherValue(password, confirmPassword)) {
-      error.push("Password do not match.");
+      errors.push("Password do not match.");
     }
 
     if (!isNotEmpty(firstName) || !isNotEmpty(lastName)) {
-      error.push("Please provide both your first and last name.");
+      errors.push("Please provide both your first and last name.");
     }
 
     if (!isNotEmpty(role)) {
-      error.push("Please select a role.");
+      errors.push("Please select a role.");
     }
 
     if (!terms) {
-      error.push("You must agree to the terms and conditions.");
+      errors.push("You must agree to the terms and conditions.");
     }
 
     if (acquisitionChannel.length === 0) {
-      error.push("Please Select atleast one acquisition channel.");
+      errors.push("Please Select atleast one acquisition channel.");
     }
 
     console.log("Submitted!!");
+
+    if (errors.length > 0) {
+      return { errors };
+    }
+
+    return { errors: null };
   }
+
+  const [formState, formAction] = useActionState(signupAction, {
+    errors: null,
+  });
 
   return (
     // <form onSubmit={handleSubmit}>
@@ -138,6 +149,14 @@ export default function Signup() {
           agree to the terms and conditions
         </label>
       </div>
+
+      {formState.errors && (
+        <ul className="error">
+          {formState.errors.map((error) => (
+            <li key={error}>{error}</li>
+          ))}
+        </ul>
+      )}
 
       <p className="form-actions">
         <button type="reset" className="button button-flat">
