@@ -6,82 +6,82 @@ import {
 } from "../util/validation.js";
 import { useActionState } from "react";
 
+function signupActionFn(prevFormState, formData) {
+  const email = formData.get("email");
+  const password = formData.get("password");
+  const confirmPassword = formData.get("confirm-password");
+  const firstName = formData.get("first-name");
+  const lastName = formData.get("last-name");
+  const role = formData.get("role");
+  const terms = formData.get("terms");
+  const acquisitionChannel = formData.getAll("acquisition") || [];
+
+  let errors = [];
+
+  if (!isEmail(email)) {
+    errors.push("Invalid email Address.");
+  }
+
+  if (!isNotEmpty(password) || !hasMinLength(password, 6)) {
+    errors.push(
+      "You must have provide a password with at least Six Charecters."
+    );
+  }
+
+  if (!isEqualToOtherValue(password, confirmPassword)) {
+    errors.push("Password do not match.");
+  }
+
+  if (!isNotEmpty(firstName) || !isNotEmpty(lastName)) {
+    errors.push("Please provide both your first and last name.");
+  }
+
+  if (!isNotEmpty(role)) {
+    errors.push("Please select a role.");
+  }
+
+  if (!terms) {
+    errors.push("You must agree to the terms and conditions.");
+  }
+
+  if (acquisitionChannel.length === 0) {
+    errors.push("Please Select atleast one acquisition channel.");
+  }
+
+  console.log("Submitted!!");
+
+  if (errors.length > 0) {
+    return {
+      errors,
+      enteredValuse: {
+        email,
+        password,
+        confirmPassword,
+        firstName,
+        lastName,
+        role,
+        acquisitionChannel,
+        terms,
+      },
+    };
+  }
+
+  return { errors: null };
+}
 export default function Signup() {
   // Handle form submission
   const signupAction = (event) => {
     // event.preventDefault()
     const formData = new FormData(event.target);
     formAction(formData);
+    console.log("Action");
+    
   };
 
-  const [formState, formAction] = useActionState(
-    (prevFormState, formData) => {
-      const email = formData.get("email");
-      const password = formData.get("password");
-      const confirmPassword = formData.get("confirm-password");
-      const firstName = formData.get("first-name");
-      const lastName = formData.get("last-name");
-      const role = formData.get("role");
-      const terms = formData.get("terms");
-      const acquisitionChannel = formData.getAll("acquisition") || [];
-
-      let errors = [];
-
-      if (!isEmail(email)) {
-        errors.push("Invalid email Address.");
-      }
-
-      if (!isNotEmpty(password) || !hasMinLength(password, 6)) {
-        errors.push(
-          "You must have provide a password with at least Six Charecters."
-        );
-      }
-
-      if (!isEqualToOtherValue(password, confirmPassword)) {
-        errors.push("Password do not match.");
-      }
-
-      if (!isNotEmpty(firstName) || !isNotEmpty(lastName)) {
-        errors.push("Please provide both your first and last name.");
-      }
-
-      if (!isNotEmpty(role)) {
-        errors.push("Please select a role.");
-      }
-
-      if (!terms) {
-        errors.push("You must agree to the terms and conditions.");
-      }
-
-      if (acquisitionChannel.length === 0) {
-        errors.push("Please Select atleast one acquisition channel.");
-      }
-
-      console.log("Submitted!!");
-
-      if (errors.length > 0) {
-        return {
-          errors,
-          enteredValuse: {
-            email,
-            password,
-            confirmPassword,
-            firstName,
-            lastName,
-            role,
-            acquisitionChannel,
-            terms,
-          },
-        };
-      }
-
-      return { errors: null };
-    },
-    {
-      errors: null,
-      enteredValuse: {},
-    }
-  );
+  const [formState, formAction] = useActionState(signupActionFn, {
+    errors: null,
+    enteredValuse: {},
+  });
 
   return (
     // <form onSubmit={handleSubmit}>
