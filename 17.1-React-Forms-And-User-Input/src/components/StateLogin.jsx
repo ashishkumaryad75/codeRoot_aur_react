@@ -64,9 +64,6 @@ export default function StateLogin() {
       <p className="form-actions">
         <button className="button button-flat">Reset</button>
         <button className="button">Login</button>
-        {/* <button type="button" className="button" onClick={handleSubmit}>
-          Login
-        </button> */}
       </p>
     </form>
   );
