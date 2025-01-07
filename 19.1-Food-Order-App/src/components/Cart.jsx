@@ -4,6 +4,7 @@ import CartContext from "../store/CartContext";
 import { currencyFormatter } from "../util/formatting";
 import Button from "./UI/Button";
 import UserProgressContext from "../store/UserProgress";
+import CartItem from "./CartItem";
 
 function Cart() {
   const cartCtx = useContext(CartContext);
@@ -16,8 +17,7 @@ function Cart() {
 
   function handleCloseCart() {
     useProgressCtx.hideCart();
-    console.log('closed..');
-    
+    console.log("closed..");
   }
 
   return (
@@ -26,9 +26,14 @@ function Cart() {
         <h2>Your Cart</h2>
         <ul>
           {cartCtx.items.map((item) => (
-            <li key={item.id}>
-              {item.name} - {item.quantity}
-            </li>
+            <CartItem
+              key={item.id}
+              name={item.name}
+              quantity={item.quantity}
+              price={item.price}
+              onIncrease={()=>cartCtx.addItem(item)}
+              onDecrease={()=>cartCtx.removeItem(item.id)}
+            />
           ))}
         </ul>
         <p className="catr-total">{currencyFormatter.format(cartTotal)}</p>
