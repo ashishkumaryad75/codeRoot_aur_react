@@ -8,7 +8,7 @@ import CartItem from "./CartItem";
 
 function Cart() {
   const cartCtx = useContext(CartContext);
-  const useProgressCtx = useContext(UserProgressContext);
+  const userProgressCtx = useContext(UserProgressContext);
 
   const cartTotal = cartCtx.items.reduce(
     (totalPrice, item) => totalPrice + item.quantity * item.price,
@@ -16,13 +16,20 @@ function Cart() {
   );
 
   function handleCloseCart() {
-    useProgressCtx.hideCart();
-    console.log("closed..");
+    userProgressCtx.hideCart();
+  }
+
+  function handleGoToCheckout() {
+    userProgressCtx.showCheckout();
   }
 
   return (
     <>
-      <Modal className="cart" open={useProgressCtx.progess === "cart"}>
+      <Modal
+        className="cart"
+        open={userProgressCtx.progess === "cart"}
+        onClose={userProgressCtx.progess === "cart" ? handleCloseCart : null}
+      >
         <h2>Your Cart</h2>
         <ul>
           {cartCtx.items.map((item) => (
@@ -31,8 +38,8 @@ function Cart() {
               name={item.name}
               quantity={item.quantity}
               price={item.price}
-              onIncrease={()=>cartCtx.addItem(item)}
-              onDecrease={()=>cartCtx.removeItem(item.id)}
+              onIncrease={() => cartCtx.addItem(item)}
+              onDecrease={() => cartCtx.removeItem(item.id)}
             />
           ))}
         </ul>
@@ -41,7 +48,9 @@ function Cart() {
           <Button textOnly onClick={handleCloseCart}>
             Close
           </Button>
-          <Button onClick={handleCloseCart}>Go to Checkout</Button>
+          {cartCtx.items.length > 0 && (
+            <Button onClick={handleGoToCheckout}>Go to Checkout</Button>
+          )}{" "}
         </p>
       </Modal>
     </>
