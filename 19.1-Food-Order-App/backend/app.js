@@ -1,12 +1,12 @@
-import fs from 'node:fs/promises';
+import fs from "node:fs/promises";
 
-import bodyParser from 'body-parser';
-import express from 'express';
+import bodyParser from "body-parser";
+import express from "express";
 
 const app = express();
 
 app.use(bodyParser.json());
-app.use(express.static('public'));
+app.use(express.static("public"));
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -20,8 +20,14 @@ app.get('/meals', async (req, res) => {
   res.json(JSON.parse(meals));
 });
 
+app.get('/orders', async (req, res) => {
+  const orders = await fs.readFile('./data/orders.json', 'utf8');
+  res.json(JSON.parse(orders));
+});
+
 app.post('/orders', async (req, res) => {
   const orderData = req.body.order;
+// console.log("orderData---------------->",orderData);
 
   if (orderData === null || orderData.items === null || orderData.items.length === 0) {
     return res
