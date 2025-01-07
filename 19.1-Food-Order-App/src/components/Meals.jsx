@@ -1,6 +1,7 @@
 import React from "react";
 import MealItem from "./MealItem";
 import useHttp from "../hooks/useHttp.js";
+import Error from "./Error.jsx";
 
 const requestConfig = {};
 function Meals() {
@@ -10,10 +11,13 @@ function Meals() {
     error,
   } = useHttp("http://localhost:3000/meals", requestConfig, []);
 
-  console.log("meals==>", loadedMeals);
-
   if (isLoading) {
-    return <p>Fetching meals....</p>;
+    return <p className="center">Fetching meals....</p>;
+  }
+
+
+  if (error) {
+    return <Error title="Failed to Fetch Meals!!" message={error} />;
   }
 
   // if (!loadedMeals) {

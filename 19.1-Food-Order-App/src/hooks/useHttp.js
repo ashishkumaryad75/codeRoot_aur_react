@@ -4,14 +4,13 @@ async function sendHttpRequest(url, config) {
   const response = await fetch(url, config);
 
   const resData = await response.json();
-
-  if (!response) {
-    throw new Error(
-      resData.message || "Something went wrong, failed to send request."
-    );
+  if (!response.ok) {
+    throw new Error(resData.message || `Something went wrong, failed with status ${response.status}`);
   }
+
   return resData;
 }
+
 
 const useHttp = (url, config, initialData) => {
   const [data, setData] = useState(initialData);
@@ -22,9 +21,9 @@ const useHttp = (url, config, initialData) => {
     async function sendRequest() {
       setIsLoading(true);
       try {
-        const responseData = await sendHttpRequest(url, config);
+        const responseData = await sendHttpRequest(url, config);        
         setData(responseData);
-      } catch (error) {
+      } catch (error) {        
         setError(error.message || "Something went wrong!");
       }
       setIsLoading(false);
