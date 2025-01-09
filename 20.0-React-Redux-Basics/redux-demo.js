@@ -2,8 +2,8 @@ console.log("Redux");
 
 const redux = require("redux");
 
+// creating the reducer function
 const counterReducer = (state = { counter: 0 }, action) => {
-  // creating the reducer function
   if (action.type === "increment") {
     return {
       counter: state.counter + 5,

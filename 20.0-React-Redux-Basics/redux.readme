@@ -1,0 +1,12 @@
+There is the 'Centralized Store' (Data Store).
+
+And the "Components" "subscribe" the 'state' from the Store for using the states
+by using 'useSelector' or 'subscribing' the state.
+
+The Components "Dispatch" the "Actions" to the 'Reducer function'.
+
+The 'Reducer function' will 'mutate' the state in stores as per the 'Action Type'.
+
+Note: The Component can not mutate the state directly in store.
+it has to mutate the state inside store through 'Dispatching the Action to the Reducer function'
+then only the states form inside the Store can be mutated.
