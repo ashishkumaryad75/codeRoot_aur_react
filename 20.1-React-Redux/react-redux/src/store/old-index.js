@@ -2,19 +2,19 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
 
 // Counter Slice for Counter and Toggle.
-const initialCounterState = { counterValue: 0, showCounter: true };
+const initialCounterState = { counter: 0, showCounter: true };
 const counterSlice = createSlice({
   name: "counter",
   initialState: initialCounterState,
   reducers: {
     increment(state, action) {
-      state.counterValue++;
+      state.counter++;
     },
     decrement(state, action) {
-      state.counterValue--;
+      state.counter--;
     },
     increase(state, action) {
-      state.counterValue = state.counterValue + action.payload;
+      state.counter = state.counter + action.payload;
     },
     toggleCounter(state) {
       state.showCounter = !state.showCounter;
@@ -23,22 +23,24 @@ const counterSlice = createSlice({
 });
 
 // Auth Slice for Authntication.
-const initialAuthState = { isAuthenticated: false };
-const authSlice = createSlice({
-  name: "auth",
-  initialState: initialAuthState,
-  reducers: {
-    logIn(state) {
-      state.isAuthenticated = true;
-    },
-    logOut() {
-      state.isAuthenticated = false;
-    },
-  },
-});
+// const initialAuthState = { isAuthenticated: false };
+// const authSlice = createSlice({
+//   name: "auth",
+//   initialState: initialAuthState,
+//   reducers: {
+//     logIn(state) {
+//       state.isAuthenticated = true;
+//     },
+//     logOut() {
+//       state.isAuthenticated = false;
+//     },
+//   },
+// });
 
+
+//   reducer: { counter: counterSlice.reducer, auth: authSlice.reducer },
 const store = configureStore({
-  reducer: { counter: counterSlice.reducer, auth: authSlice.reducer },
+  reducer: { counter: counterSlice.reducer },
 }); // for multiple reducers.
 
 // const store = configureStore({
@@ -46,9 +48,10 @@ const store = configureStore({
 // }); //  for single reducer
 
 export const counterActions = counterSlice.actions;
-export const authActions = authSlice.actions;
+// export const authActions = authSlice.actions;
 
 export default store;
+
 
 // const counterRedusecer = (state = initialState, action) => {
 //   if (action.type === "increment") {

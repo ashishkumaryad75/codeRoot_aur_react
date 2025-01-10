@@ -1,5 +1,6 @@
 import classes from './Auth.module.css';
 
+
 const Auth = () => {
   return (
     <main className={classes.auth}>

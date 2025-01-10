@@ -1,9 +1,14 @@
-import Counter from './components/Counter';
-
+import Counter from "./components/Counter.jsx";
+import Header from "./components/Header.jsx";
+import Auth from "./components/Auth.jsx";
 
 function App() {
   return (
-    <Counter />
+    <>
+      <Header />
+      <Auth />
+      <Counter />
+    </>
   );
 }
 

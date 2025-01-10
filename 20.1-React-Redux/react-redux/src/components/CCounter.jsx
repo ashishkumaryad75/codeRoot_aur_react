@@ -5,8 +5,8 @@ import { useSelector, useDispatch } from "react-redux";
 
 const Counter = () => {
   const dispatch = useDispatch();
-  const counter = useSelector((state) => state.counter.counterValue);
-  const show = useSelector((state) => state.counter.showCounter);
+  const counter = useSelector((state) => state.counter);
+  const show = useSelector((state) => state.showCounter);
 
   const toggleCounterHandler = () => {
     // dispatch({ type: "toggle" }); // applicable in react-redux only not for redux-toolkit
@@ -31,7 +31,7 @@ const Counter = () => {
   return (
     <main className={classes.counter}>
       <h1>Redux Counter</h1>
-      {show && <div className={classes.value}>{counter}</div>}
+      {!show && <div className={classes.value}>{counter}</div>}
       <div>
         <button onClick={incrementHandle}>Increment</button>
         <button onClick={increaseHandle}>Incresed by 5</button>
