@@ -8,6 +8,7 @@ import HomePage from "./pages/HomePage";
 import ProductPage from "./pages/ProductPage";
 import RootLayout from "./components/RootLayout";
 import ErrorPage from "./pages/ErrorPage";
+import ProductDetailsPage from "./pages/ProductDetailsPage.jsx";
 
 function App() {
   // const routeDefenition = createRoutesFromElements(
@@ -21,11 +22,12 @@ function App() {
     {
       path: "/",
       element: <RootLayout />,
+      errorElement: <ErrorPage />,
       children: [
         { path: "/", element: <HomePage /> },
         { path: "/products", element: <ProductPage /> },
+        { path: "/products/:productId", element: <ProductDetailsPage /> },
       ],
-      errorElement: <ErrorPage />,
     },
   ]);
 
