@@ -24,7 +24,7 @@ function App() {
       element: <RootLayout />,
       errorElement: <ErrorPage />,
       children: [
-        { path: "", element: <HomePage /> },
+        { index: true, element: <HomePage /> },
         { path: "products", element: <ProductPage /> },
         { path: "products/:productId", element: <ProductDetailsPage /> },
       ],
