@@ -3,9 +3,9 @@ import Cart from "./components/Cart/Cart";
 import Layout from "./components/Layout/Layout";
 import Products from "./components/Shop/Products";
 import { useEffect } from "react";
-import { uiActions } from "./store/ui-slice";
+// import { uiActions } from "./store/ui-slice";
 import Notification from "./components/UI/Notification.jsx";
-import { sendCartData } from "./store/cart-slice.js";
+import { fetchCartData, sendCartData } from "./store/cart-action.js";
 
 let isInitial = true;
 
@@ -14,6 +14,10 @@ function App() {
   const dispatch = useDispatch();
   const notification = useSelector((state) => state.ui.notification);
   const cart = useSelector((state) => state.cart);
+
+  useEffect(() => {
+    dispatch(fetchCartData());
+  }, [dispatch]);
 
   useEffect(() => {
     if (isInitial) {
