@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import ProductPage from "./pages/ProductPage";
+import RootLayout from "./components/RootLayout";
 
 function App() {
   // const routeDefenition = createRoutesFromElements(
@@ -16,8 +17,14 @@ function App() {
   // );
 
   const router = createBrowserRouter([
-    { path: "/", element: <HomePage /> },
-    { path: "/products", element: <ProductPage /> },
+    {
+      path: "/",
+      element: <RootLayout />,
+      children: [
+        { path: "/", element: <HomePage /> },
+        { path: "/products", element: <ProductPage /> },
+      ],
+    },
   ]);
 
   // const router = createBrowserRouter(routeDefenition);
