@@ -12,7 +12,7 @@ const Cart = (props) => {
       <ul>
         {cartItems.map(
           (item) => (
-            console.log("cartItems==>", item),
+            // console.log("cartItems==>", item),
             (
               <CartItem
                 key={item.id}
