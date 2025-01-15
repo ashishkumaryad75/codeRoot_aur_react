@@ -11,7 +11,7 @@ function ErrorPage() {
 
   if (error.status === 500) {
     // message = JSON.parse(error.data).message;
-    message = error.data.message; //json itself will parse it .
+    message = error.data.message; //json itself will parse it, no need to parse it manually .
   }
   if (error.status === 404) {
     title = "Not Found!!.";

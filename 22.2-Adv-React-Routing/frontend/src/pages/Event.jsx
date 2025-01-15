@@ -1,5 +1,5 @@
 // import { useEffect, useState } from 'react';
-import { useLoaderData, json } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import EventsList from "../components/EventsList";
 
 function EventsPage() {
@@ -34,7 +34,8 @@ export async function loader() {
     //   JSON.stringify({ message: "Could not Fetch the events." }),
     //   { status: 500 }
     // );
-    return JSON({ message: "Could not Fetch the events." }, { status: 500 });
+    return json({ message: "Could not Fetch the events." }, { status: 500 });
+    // the json function is provided by the 'react router dom', we do not need to import it manually.
   } else {
     // const resData = await response.json();
     // const res = new Response("any data", { status: 201 });
