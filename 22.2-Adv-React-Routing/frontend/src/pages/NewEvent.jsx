@@ -1,9 +1,15 @@
 import React from "react";
+import EventForm from "../components/EventForm";
 
 function NewEventPage() {
+
+  // function submitHandler(event){
+  //   event.preventDefault();
+  // }
+
   return (
     <>
-      <h1>NewEventPage</h1>
+      <EventForm />
     </>
   );
 }
