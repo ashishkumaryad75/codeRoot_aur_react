@@ -10,7 +10,8 @@ function ErrorPage() {
   let message = "Something wenrt wrong!!..";
 
   if (error.status === 500) {
-    message = JSON.parse(error.data).message;
+    // message = JSON.parse(error.data).message;
+    message = error.data.message; //json itself will parse it .
   }
   if (error.status === 404) {
     title = "Not Found!!.";
