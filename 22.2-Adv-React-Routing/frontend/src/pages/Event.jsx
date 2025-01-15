@@ -20,3 +20,14 @@ const events = useLoaderData();
 }
 
 export default EventsPage;
+
+export async function loader(){
+  const response = await fetch("http://localhost:8080/events");
+
+  if (!response.ok) {
+    throw new Error("unable to fetch the data");
+  } else {
+    const resData = await response.json();
+    return resData.events;
+  }
+}
