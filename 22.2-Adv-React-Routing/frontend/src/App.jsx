@@ -22,7 +22,7 @@
 
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import HomePage from "./pages/Home";
-import EventsPage , { loader as eventsLoader }from "./pages/Event";
+import EventsPage, { loader as eventsLoader } from "./pages/Event";
 import EventDetailPage from "./pages/EventDetail";
 import NewEventPage from "./pages/NewEvent";
 import EditEventPage from "./pages/EditEvent";
@@ -35,7 +35,7 @@ function App() {
     {
       path: "/",
       element: <RootLayout />,
-      errorElement: <ErrorPage />,
+      errorElement: <ErrorPage />, // Error Page.
       children: [
         { index: true, element: <HomePage /> },
         {

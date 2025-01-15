@@ -4,6 +4,9 @@ import EventsList from "../components/EventsList";
 
 function EventsPage() {
   const data = useLoaderData();
+  if (data.isError) {
+    return <p>{data.message}</p>;
+  }
   const events = data.events;
   return (
     <>
@@ -22,10 +25,12 @@ export default EventsPage;
 
 export async function loader() {
   //can not use the hooks inside the loader but can use any browser feature inside the loader.
-  const response = await fetch("http://localhost:8080/events");
+  const response = await fetch("http://localhost:8080/eventsss");
 
   if (!response.ok) {
-    throw new Error("unable to fetch the data");
+    // return { isError: true, message: "Could not fetch the events ." };
+    throw{message :"Could nit fetch the events."}
+    // throw new Error ()
   } else {
     // const resData = await response.json();
     // const res = new Response("any data", { status: 201 });
