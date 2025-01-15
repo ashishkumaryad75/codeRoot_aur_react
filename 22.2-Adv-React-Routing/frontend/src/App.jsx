@@ -24,7 +24,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import HomePage from "./pages/Home";
 import EventsPage from "./pages/Event";
 import EventDetailPage from "./pages/EventDetail";
-import NewEventPage, { loader as eventsLoader } from "./pages/NewEvent";
+import NewEventPage from "./pages/NewEvent";
 import EditEventPage from "./pages/EditEvent";
 import RootLayout from "./pages/Root";
 import ErrorPage from "./pages/ErrorPage";
@@ -45,7 +45,16 @@ function App() {
             {
               index: true,
               element: <EventsPage />,
-              loader: eventsLoader,
+              loader: async () => {
+                const response = await fetch("http://localhost:8080/events");
+
+                if (!response.ok) {
+                  throw new Error("unable to fetch the data");
+                } else {
+                  const resData = await response.json();
+                  return resData.events;
+                }
+              },
             },
             { path: ":eventId", element: <EventDetailPage /> },
             { path: "new", element: <NewEventPage /> },
