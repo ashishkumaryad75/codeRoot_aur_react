@@ -25,12 +25,15 @@ export default EventsPage;
 
 export async function loader() {
   //can not use the hooks inside the loader but can use any browser feature inside the loader.
-  const response = await fetch("http://localhost:8080/eventsss");
+  const response = await fetch("http://localhost:8080/events");
 
   if (!response.ok) {
     // return { isError: true, message: "Could not fetch the events ." };
-    throw{message :"Could nit fetch the events."}
-    // throw new Error ()
+    // throw{message :"Could not fetch the events."}
+    throw new Response(
+      JSON.stringify({ message: "Could not Fetch the events." }),
+      { status: 500 }
+    );
   } else {
     // const resData = await response.json();
     // const res = new Response("any data", { status: 201 });
