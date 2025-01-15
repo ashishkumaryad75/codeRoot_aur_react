@@ -21,6 +21,7 @@ function EventsPage() {
 export default EventsPage;
 
 export async function loader() {
+  //can not use the hooks inside the loader but can use any browser feature inside the loader.
   const response = await fetch("http://localhost:8080/events");
 
   if (!response.ok) {
