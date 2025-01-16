@@ -12,10 +12,12 @@ function EventItem({ event }) {
       submit(null, { method: "delete"});
     }
   }
+  console.log("event in side Event Items==>",event);
+  
 
   return (
     <article className={classes.event}>
-      <img src={event.image} alt={event.title} />
+      <img src={event.image?event.image:''} alt={event.title?event.image:''} />
       <h1>{event.title}</h1>
       <time>{event.date}</time>
       <p>{event.description}</p>
