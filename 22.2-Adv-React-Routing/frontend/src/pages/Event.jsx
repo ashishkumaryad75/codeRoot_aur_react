@@ -33,10 +33,10 @@ async function loadEvents() {
   return resData.events;
 }
 
-export function loader() {
-  return defer({
-    events: loadEvents(),
-  });
+export async function loader() {
+  return {
+    events: await loadEvents(),
+  };
 }
 
 // // import { useEffect, useState } from 'react';
