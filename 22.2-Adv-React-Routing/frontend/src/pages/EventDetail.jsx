@@ -1,5 +1,10 @@
 import React from "react";
-import { useParams, useLoaderData, useRouteLoaderData } from "react-router-dom";
+import {
+  useParams,
+  useLoaderData,
+  useRouteLoaderData,
+  redirect,
+} from "react-router-dom";
 import EventItem from "../components/EventItem";
 
 function EventDetailPage() {
@@ -27,4 +32,18 @@ export async function loader({ resquest, params }) {
   } else {
     return response;
   }
+}
+
+export async function action({ request, params }) {
+  const eventId = params.eventId;
+
+  const response = await fetch("http://localhost:8080/events/" + eventId, {
+    // method: "delete",
+    method: request.method,
+  });
+
+  if (!response.ok) {
+    return json({ message: "Could not delete the event." }, { status: 500 });
+  }
+  return redirect("/events");
 }
