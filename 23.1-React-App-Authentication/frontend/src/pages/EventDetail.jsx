@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import EventItem from "../components/EventItem";
 import EventsList from "../components/EventsList";
+import { getAuthToken } from "../util/auth";
 
 function EventDetailPage() {
   // const param = useParams();
@@ -65,7 +66,7 @@ export async function loader({ resquest, params }) {
 
   return {
     // when we send the both the data wrapping like this,
-    // we have to use await for both the events, 
+    // we have to use await for both the events,
     //if we avoid for any one of them then the UI will be break,
     // and the event will never be resolve and promise also reject for
     //-both the event evne we are not using fo rone of them.
@@ -76,10 +77,14 @@ export async function loader({ resquest, params }) {
 
 export async function action({ request, params }) {
   const eventId = params.eventId;
+  const token = getAuthToken();
 
   const response = await fetch("http://localhost:8080/events/" + eventId, {
     // method: "delete",
     method: request.method,
+    headers: {
+      Authorization: "Bearer " + token,
+    },
   });
 
   if (!response.ok) {
