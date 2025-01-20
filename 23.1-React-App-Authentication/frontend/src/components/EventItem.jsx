@@ -11,22 +11,26 @@ function EventItem({ event }) {
 
     if (proceed) {
       // submit(null,{method:'delete', action:'action-on-different-path'});
-      submit(null, { method: "delete"});
+      submit(null, { method: "delete" });
     }
   }
-  console.log("event in side Event Items==>",event);
-  
+  console.log("event in side Event Items==>", event);
 
   return (
     <article className={classes.event}>
-      <img src={event.image?event.image:''} alt={event.title?event.image:''} />
+      <img
+        src={event.image ? event.image : ""}
+        alt={event.title ? event.image : ""}
+      />
       <h1>{event.title}</h1>
       <time>{event.date}</time>
       <p>{event.description}</p>
-      { token && (<menu className={classes.actions}>
-        <Link to="edit">Edit</Link>
-        <button onClick={startDeleteHandler}>Delete</button>
-      </menu>)}
+      {token && (
+        <menu className={classes.actions}>
+          <Link to="edit">Edit</Link>
+          <button onClick={startDeleteHandler}>Delete</button>
+        </menu>
+      )}
     </article>
   );
 }
