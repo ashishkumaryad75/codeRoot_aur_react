@@ -39,3 +39,10 @@ let people:{
     name:string,
     age:number
 }[];// storing as in array the above properties.
+
+
+// Type Interface
+let course = "React the complete guide";
+
+// course = 36745;//error due to type 
+
