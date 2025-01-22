@@ -46,3 +46,14 @@ let course = "React the complete guide";
 
 // course = 36745;//error due to type 
 
+
+// Type Union
+let courses:string | number  = "React the complete guide";
+
+courses = 36745;
+
+// both types are valid due to type union.
+let userNames : string | string[];
+userNames = "Coding-root";
+userNames = ['coding','root'];
+
