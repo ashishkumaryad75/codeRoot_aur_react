@@ -90,3 +90,18 @@ function printFn(value: any): void {
 }
 
 printFn(673458);
+
+// Generics
+
+function insertAtBegining<T>(array: T[], value: T) {
+  const newArray = [value, ...array];
+  return newArray;
+}
+
+const demoArray = [2, 56, 3];
+
+const updatedArray = insertAtBegining(demoArray, -1); // [-1,2,56,3]
+const updatedArrayString = insertAtBegining(["we", "rer", "dgfe"], "d"); // ['d','we','rer','dgfe']
+
+console.log("resultsOfArray", updatedArray);
+console.log("resultsOfArrayString", updatedArrayString);

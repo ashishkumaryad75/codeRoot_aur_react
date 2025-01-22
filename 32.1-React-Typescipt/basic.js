@@ -1,6 +1,15 @@
 // Primitives : number, string, boolean
 // More Complex type : Array , object
 // Function Type , parameters
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
 // Primitives
 var age11;
 age11 = 12;
@@ -55,3 +64,13 @@ function printFn(value) {
     console.log("value==> ", value);
 }
 printFn(673458);
+// Generics
+function insertAtBegining(array, value) {
+    var newArray = __spreadArray([value], array, true);
+    return newArray;
+}
+var demoArray = [2, 56, 3];
+var updatedArray = insertAtBegining(demoArray, -1); // [-1,2,56,3]
+var updatedArrayString = insertAtBegining(["we", "rer", "dgfe"], "d"); // ['d','we','rer','dgfe']
+console.log("resultsOfArray", updatedArray);
+console.log("resultsOfArrayString", updatedArrayString);
