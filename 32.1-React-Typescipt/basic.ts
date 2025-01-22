@@ -74,3 +74,19 @@ let person2: Person1[] = [
   },
   { name: "Insta", age: 4 },
 ];
+
+// functions and types
+function add(a: number, b: number) {
+  return a + b;
+}
+
+// the return type will be number coz it is returning number type in the outupt
+const additionOfNum: number = add(4, 8);
+console.log("additionOfNum-->", additionOfNum);
+
+// here the return type will be void due to not returning any thing
+function printFn(value: any): void {
+  console.log("value==> ", value);
+}
+
+printFn(673458);
