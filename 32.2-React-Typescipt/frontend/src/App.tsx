@@ -3,8 +3,6 @@ import React, { useState } from "react";
 import Todos from "./components/Todos.tsx";
 import Todo from "./models/todo.ts";
 import NewTodo from "./components/NewTodo.tsx";
-import { strict } from "assert";
-import { stringify } from "querystring";
 
 function App() {
   // const todos = [new Todo("Learn React And"), new Todo("Learn TypeScript")];
@@ -17,10 +15,16 @@ function App() {
     });
   };
 
+  const removeHandler = (todoId: string) => {
+    setTodos((prevTodos) => {
+      return prevTodos.filter((todo) => todo.id !== todoId);
+    });
+  };
+
   return (
     <>
       <NewTodo onAddTodo={addTodoHandler} />
-      <Todos items={todos} />
+      <Todos items={todos} onRemoveTodo={removeHandler} />
     </>
   );
 }
