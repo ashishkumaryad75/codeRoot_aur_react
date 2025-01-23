@@ -6,6 +6,7 @@ import { useState } from "react";
 import Modal from "./Modal";
 
 function PostList() {
+  const [modalIsVisible, setModalIsVisible] = useState(true);
   const [enteredBody, setEntredBody] = useState("");
   const [enteredAuthor, setEntredAuthor] = useState("");
 
@@ -16,14 +17,20 @@ function PostList() {
   function authorChangeHandler(event) {
     setEntredAuthor(event.target.value);
   }
+
+  function hideModalHandler() {
+    setModalIsVisible(false);
+  }
   return (
     <>
-      <Modal>
-        <NewPost
-          onBodyChange={bodyChangeHandler}
-          onAuthorChange={authorChangeHandler}
-        />
-      </Modal>
+      {modalIsVisible && (
+        <Modal onClose={hideModalHandler}>
+          <NewPost
+            onBodyChange={bodyChangeHandler}
+            onAuthorChange={authorChangeHandler}
+          />
+        </Modal>
+      )}
       <ul className={classes.posts}>
         <Post author={enteredBody} body={enteredAuthor} />
         <Post author="Root" body="Learning the React App." />
