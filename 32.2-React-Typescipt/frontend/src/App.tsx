@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState } from "react";
+import React from "react";
 import Todos from "./components/Todos.tsx";
 import NewTodo from "./components/NewTodo.tsx";
 import TodosContextProvider from "./store/todos-Context.tsx";

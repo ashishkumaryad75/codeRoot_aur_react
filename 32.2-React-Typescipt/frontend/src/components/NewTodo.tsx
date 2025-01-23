@@ -9,7 +9,7 @@ const NewTodo: React.FC = () => {
 
   const submitHandler = (event: React.FormEvent) => {
     event.preventDefault();
-    const enteredText = todoTextInputRef.current?.value || "";
+    const enteredText = todoTextInputRef.current?.value  || '';
 
     if (enteredText?.trim().length === 0) {
       // throw Error
