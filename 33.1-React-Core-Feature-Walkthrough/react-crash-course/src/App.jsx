@@ -1,13 +1,14 @@
 import React from "react";
-import Post from "./components/Post";
+import './App.css';
+import PostList from "./components/PostList";
+
 
 function App() {
   return (
     <>
-      <div className="">
-        <Post author='Coding' body="Learning the frontend."/>
-        <Post author='Root' body="Learning the React App."/>
-      </div>
+      <main >
+        <PostList/>
+       </main>
     </>
   );
 }
