@@ -18,9 +18,19 @@ function PostList({ isPosting, onStopPosting }) {
           <NewPost onCancel={onStopPosting} onAddPost={addPostHandler} />
         </Modal>
       )}
-      <ul className={classes.posts}>
-        <Post author="Root" body="Learning the React App." />
-      </ul>
+      {posts.length > 0 && (
+        <ul className={classes.posts}>
+          {posts.map((post) => (
+            <Post key={post.body} post={post} />
+          ))}
+        </ul>
+      )}
+      {posts.length === 0 && (
+        <div style={{ textAlign: "center", color: "white" }}>
+          <h2>There Are No Post Yet.</h2>
+          <p>Start Adding Something!!</p>
+        </div>
+      )}
     </>
   );
 }
