@@ -5,10 +5,8 @@ function App() {
   return (
     <>
       <main>
-        <Post />
-        <Post />
-        <Post />
-        <Post />
+        <Post author='Coding' description="Learning the frontend."/>
+        <Post author='Root' description="Learning the React App."/>
       </main>
     </>
   );
