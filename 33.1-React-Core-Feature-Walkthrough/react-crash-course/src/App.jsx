@@ -4,10 +4,10 @@ import Post from "./components/Post";
 function App() {
   return (
     <>
-      <main>
-        <Post author='Coding' description="Learning the frontend."/>
-        <Post author='Root' description="Learning the React App."/>
-      </main>
+      <div className="">
+        <Post author='Coding' body="Learning the frontend."/>
+        <Post author='Root' body="Learning the React App."/>
+      </div>
     </>
   );
 }
