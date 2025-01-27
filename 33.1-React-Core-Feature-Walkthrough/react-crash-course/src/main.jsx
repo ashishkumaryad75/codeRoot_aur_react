@@ -11,9 +11,9 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Posts />,
+        element: <Posts />, loader: postsLoader,
         children: [
-          { path: "/create-post", element: <NewPost />, loader: postsLoader },
+          { path: "/create-post", element: <NewPost />, },
         ],
       },
     ],

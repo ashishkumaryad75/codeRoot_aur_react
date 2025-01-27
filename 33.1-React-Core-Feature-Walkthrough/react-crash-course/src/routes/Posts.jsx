@@ -20,12 +20,7 @@ export async function loader() {
   const response = await fetch("http://localhost:8080/posts");
   const data = await response.json();
   if (!response.ok) {
-    console.log(
-      "Error##########################>",
-      new Error('didn"t gat the data')
-    );
-    return [];
+    return new Error('didn"t gat the data');
   }
-  console.log("data##########################>", data);
-  return data.posts || [];
+  return data.posts;
 }
