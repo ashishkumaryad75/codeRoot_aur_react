@@ -1,57 +1,50 @@
-import { useState } from "react";
 import classes from "./NewPost.module.css";
 import React from "react";
 import Modal from "../components/Modal";
-import { Link } from "react-router-dom";
+import { Form, Link, redirect } from "react-router-dom";
 
-function NewPost({  onAddPost }) {
-  const [enteredBody, setEntredBody] = useState("");
-  const [enteredAuthor, setEntredAuthor] = useState("");
-
-  function bodyChangeHandler(event) {
-    setEntredBody(event.target.value);
-  }
-
-  function authorChangeHandler(event) {
-    setEntredAuthor(event.target.value);
-  }
-
-  function submitHandler(event) {
-    event.preventDefault();
-    const postData = {
-      body: enteredBody,
-      author: enteredAuthor,
-    };
-    onAddPost(postData);
-    console.log(postData);
-    onCancel();
-  }
-
+function NewPost() {
   return (
     <Modal>
-      <form className={classes.form} onSubmit={submitHandler}>
+      <Form method="post" className={classes.form}>
         <p>
           <label htmlFor="body">Text</label>
-          <textarea id="body" required rows={3} onChange={bodyChangeHandler} />
+          <textarea id="body" name="body" required rows={3} />
         </p>
         <p>
-          <label htmlFor="name">Your name</label>
-          <input
-            type="text"
-            id="name"
-            required
-            onChange={authorChangeHandler}
-          />
+          <label htmlFor="name" >
+            Your name
+          </label>
+          <input type="text" id="name" name="author" required />
         </p>
         <p className={classes.actions}>
-          <Link to='..' type="button">
+          <Link to=".." type="button">
             Cancel
           </Link>
           <button>Submit</button>
         </p>
-      </form>{" "}
+      </Form>{" "}
     </Modal>
   );
 }
 
 export default NewPost;
+
+export const action = async ({ request, params }) => {
+  const formData = await request.formData();
+  const postData = Object.fromEntries(formData); // {body:"..",author:".."}
+  const response = await fetch("http://localhost:8080/posts", {
+    method: "POST",
+    body: JSON.stringify(postData),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (!response.ok) {
+    return new Error("Failed To Submit the data.");
+  }
+  const resData = await response.json();
+  console.log(resData);
+
+  return redirect("/");
+};
