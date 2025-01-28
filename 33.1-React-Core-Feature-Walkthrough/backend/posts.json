@@ -1,1 +1,19 @@
-{"posts":[{"body":"New Post For Form Data ","author":"RootCoding","id":"0.18118920779203695"},{"body":"Leaning React and javascript here.","author":"Coding Root","id":"0.12450267096344314"},{"body":"This course is hopefully very helpful to you!","author":"Roots","id":"post-1"}]}
+{
+    "posts": [
+        {
+            "body": "New Post For Form Data ",
+            "author": "RootCoding",
+            "id": "p3"
+        },
+        {
+            "body": "Leaning React and javascript here.",
+            "author": "Coding Root",
+            "id": "p2"
+        },
+        {
+            "body": "This course is hopefully very helpful to you!",
+            "author": "Roots",
+            "id": "p1"
+        }
+    ]
+}

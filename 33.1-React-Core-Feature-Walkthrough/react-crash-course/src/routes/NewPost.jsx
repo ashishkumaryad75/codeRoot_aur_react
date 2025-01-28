@@ -30,7 +30,7 @@ function NewPost() {
 
 export default NewPost;
 
-export const action = async ({ request, params }) => {
+export const action = async ({ request }) => {
   const formData = await request.formData();
   const postData = Object.fromEntries(formData); // {body:"..",author:".."}
   const response = await fetch("http://localhost:8080/posts", {
