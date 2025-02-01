@@ -16,19 +16,23 @@ export default function EditEvent() {
     queryFn: ({ signal }) => fetchEvent({ id: params.id, signal }),
   });
 
-  const {
-    mutate,
-    isPending: isUpdatePending,
-    isError: isUpdateError,
-    error: updateError,
-  } = useMutation({
+  const { mutate } = useMutation({
     mutationFn: updateEvent,
-    // onSuccess: () => {
-    //   queryClient.invalidateQueries({
-    //     queryKey: ["events"],
-    //   });
-    //   navigate("/events");
-    // },
+    onMutate: async (data) => {
+      const newEvent = data.event;
+      await queryClient.cancelQueries({ queryKey: ["event", params.id] });
+      const previousEvent = queryClient.getQueryData(["event", params.id]);
+      queryClient.setQueryData(["event", params.id], newEvent);
+      return { previousEvent };
+    },
+    
+    onError: (error, data, context) => {
+      queryClient.setQueryData(["event", params.id], context.previousEvent);
+    },
+
+    onSettled: () => {
+      queryClient.invalidateQueries(["event", params.id]);
+    },
   });
 
   function handleSubmit(formData) {
