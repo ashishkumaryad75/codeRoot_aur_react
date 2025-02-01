@@ -41,7 +41,10 @@ export default function EventForm({ inputData, onSubmit, children }) {
       {isError && (
         <ErrorBlock
           title="Failed to Load Selectable Images"
-          message="Please Try again later.."
+          message={
+            error.info?.message ||
+            "Failed to fetch the Images, Please try again Later."
+          }
         />
       )}
       {data && (
