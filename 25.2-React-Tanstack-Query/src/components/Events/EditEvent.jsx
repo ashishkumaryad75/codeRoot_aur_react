@@ -25,7 +25,7 @@ export default function EditEvent() {
       queryClient.setQueryData(["event", params.id], newEvent);
       return { previousEvent };
     },
-    
+
     onError: (error, data, context) => {
       queryClient.setQueryData(["event", params.id], context.previousEvent);
     },
