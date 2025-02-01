@@ -17,7 +17,7 @@ export default function EventDetails() {
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["events"],
-        // exact: true,
+        refetchType: "none",
       });
       navigate("/events");
     },
